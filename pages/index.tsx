@@ -15,8 +15,9 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
       return;
     }
     console.log("LIFF init succeeded.");
-    console.log(liff);
-    console.log(liff.getDecodedIDToken());
+    console.log("uid:", liff.getIDToken())
+    console.log("accessToken:", liff.getAccessToken())
+    console.log("decodedIDToken:", liff.getDecodedIDToken())
     if (liff.isLoggedIn()) {
       console.log("LIFF is logged in.");
       setIsLoggedIn(true);
