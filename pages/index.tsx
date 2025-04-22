@@ -14,13 +14,14 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
       console.log("LIFF is not initialized.");
       return;
     }
-    console.log("LIFF init succeeded.");
-    console.log("uid:", liff.getIDToken())
-    console.log("accessToken:", liff.getAccessToken())
-    console.log("decodedIDToken:", liff.getDecodedIDToken())
     if (liff.isLoggedIn()) {
       console.log("LIFF is logged in.");
       setIsLoggedIn(true);
+      liff.getProfile().then((profile) => {
+        const userId = profile.userId;
+        console.log("LIFF userId:", userId);
+        location.href = "https://google.com?uid=" + userId;
+      });
     } else {
       liff.login();
       setIsLoggedIn(true);
